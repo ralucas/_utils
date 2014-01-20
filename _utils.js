@@ -198,6 +198,45 @@
 		return output;
 	};
 
+	//creates array given range
+	_utils.range = function(first, last) {
+		var output = [];
+		if( last === 'undefined') {
+			throw console.error('Requires two parameters');
+		}
+		else if( (typeof(first) === 'number') && (typeof(last) === 'number') ) {
+			var i = first;
+			if( last > first ) {
+				for( i; i <= last; i++ ) {
+					output.push(i);
+				}
+			} else {
+				for( i; i >= last; i-- ) {
+					output.push(i);
+				}
+			}
+		}
+		else if( typeof(first) === 'string' && typeof(last) === 'string' ) {
+			var x = first.charCodeAt(),
+				y = last.charCodeAt(),
+				letter = '';
+			if( y > x ) {
+				for( x; x <= y; x++) {
+					letter = String.fromCharCode(x);
+					output.push(letter);
+				}
+			} else {
+				for( x; x >= y; x--) {
+					letter = String.fromCharCode(x);
+					output.push(letter);
+				}
+			}
+		} else {
+			throw console.error('Bad function usage');
+		}
+		return output;
+	};
+
 }).call(this);
 
 
