@@ -1,58 +1,47 @@
-describe("Player", function() {
-  var player;
-  var song;
+/*
+* Testing Suite for _util.js
+* 
+* 
+*/
 
-  beforeEach(function() {
-    player = new Player();
-    song = new Song();
-  });
-
-  it("should be able to play a Song", function() {
-    player.play(song);
-    expect(player.currentlyPlayingSong).toEqual(song);
-
-    //demonstrates use of custom matcher
-    expect(player).toBePlaying(song);
-  });
-
-  describe("when song has been paused", function() {
-    beforeEach(function() {
-      player.play(song);
-      player.pause();
+/*
+* Tests for _util.range 
+* @function Creates array given the range
+*
+*/
+  describe("creates an inclusive array given the range", function() {
+  
+    it("should create an ascending array of numbers", function() {
+      var a = 5,
+        b = 10;
+      expect(_utils.range(a,b)).toEqual([5,6,7,8,9,10]);
     });
 
-    it("should indicate that the song is currently paused", function() {
-      expect(player.isPlaying).toBeFalsy();
-
-      // demonstrates use of 'not' with a custom matcher
-      expect(player).not.toBePlaying(song);
+    it("should create an descending array of numbers", function() {
+      var a = 8,
+        b = 3;
+      expect(_utils.range(a,b)).toEqual([8,7,6,5,4,3]);
     });
 
-    it("should be possible to resume", function() {
-      player.resume();
-      expect(player.isPlaying).toBeTruthy();
-      expect(player.currentlyPlayingSong).toEqual(song);
+    it("should create an ascending array of letters", function() {
+      var a = 'g',
+        b = 'l';
+      expect(_utils.range(a,b)).toEqual(['g','h','i','j','k','l']);
     });
-  });
 
-  // demonstrates use of spies to intercept and test method calls
-  it("tells the current song if the user has made it a favorite", function() {
-    spyOn(song, 'persistFavoriteStatus');
-
-    player.play(song);
-    player.makeFavorite();
-
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
-  });
-
-  //demonstrates use of expected exceptions
-  describe("#resume", function() {
-    it("should throw an exception if song is already playing", function() {
-      player.play(song);
-
-      expect(function() {
-        player.resume();
-      }).toThrow("song is already playing");
+    it("should create an descending array of letters", function() {
+      var a = 'Z',
+        b = 'W';
+      expect(_utils.range(a,b)).toEqual(['Z','Y','X','W']);
     });
+
+    it("should return undefined", function() {
+      var a = 'F';
+      expect(_utils.range(a)).toThrow(console.error);
+    });
+
+    it("should return undefined", function() {
+      expect(_utils.range()).toThrow(console.error);
+    });
+
   });
-});

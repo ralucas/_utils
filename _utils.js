@@ -201,7 +201,7 @@
 	//creates array given range
 	_utils.range = function(first, last) {
 		var output = [];
-		if( last === 'undefined') {
+		if( !last) {
 			throw console.error('Requires two parameters');
 		}
 		else if( (typeof(first) === 'number') && (typeof(last) === 'number') ) {

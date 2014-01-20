@@ -15,6 +15,7 @@ Functions:
 * Split Array
 * Geolocation in browser
 * Distance calculation functions based on lat & long
+* Range - Creates an array based on range
 
 ####How to use:
 
