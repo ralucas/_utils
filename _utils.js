@@ -198,43 +198,66 @@
 		return output;
 	};
 
-	//creates array given range
+	/*
+	* Creates array given range
+	*
+	* @param first Takes the first in a series
+	* @param last Takes the last in a series
+	*/
 	_utils.range = function(first, last) {
 		var output = [];
-		if( !last) {
-			throw console.error('Requires two parameters');
+		if (!last) {
+			throw new Error('Requires two parameters');
 		}
-		else if( (typeof(first) === 'number') && (typeof(last) === 'number') ) {
+		else if ( (typeof(first) === 'number') && (typeof(last) === 'number') ) {
 			var i = first;
-			if( last > first ) {
+			if (last > first) {
 				for( i; i <= last; i++ ) {
 					output.push(i);
 				}
 			} else {
-				for( i; i >= last; i-- ) {
+				for ( i; i >= last; i-- ) {
 					output.push(i);
 				}
 			}
 		}
-		else if( typeof(first) === 'string' && typeof(last) === 'string' ) {
+		else if ( typeof(first) === 'string' && typeof(last) === 'string' ) {
 			var x = first.charCodeAt(),
 				y = last.charCodeAt(),
 				letter = '';
-			if( y > x ) {
+			if ( y > x ) {
 				for( x; x <= y; x++) {
 					letter = String.fromCharCode(x);
 					output.push(letter);
 				}
 			} else {
-				for( x; x >= y; x--) {
+				for ( x; x >= y; x--) {
 					letter = String.fromCharCode(x);
 					output.push(letter);
 				}
 			}
 		} else {
-			throw console.error('Bad function usage');
+			throw new Error('Bad function usage');
 		}
 		return output;
+	};
+
+	/**
+	* Creates a two-dimensional array
+	* @param numrows {number} takes the number of rows
+	* @param numcols {number} takes the number of columns
+	* @param initial {} the initial value to be placed in each
+	**/
+	_utils.matrix = function(numrows, numcols, initial) {
+		var arr = [];
+			for (var i = 0; i < numrows; ++i) {
+				var columns = [];
+				for (var j = 0; j < numcols; ++j) {
+					columns[j] = initial;
+				}
+				arr[i] = columns;
+			}
+		return arr;
 	};
 
 }).call(this);

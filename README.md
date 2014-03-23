@@ -16,6 +16,7 @@ Functions:
 * Geolocation in browser
 * Distance calculation functions based on lat & long
 * Range - Creates an array based on range
+* Matrix - Creates a two-dimensional array
 
 ####How to use:
 
