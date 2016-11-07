@@ -260,6 +260,15 @@
 		return arr;
 	};
 
+  /**
+   * Return Boolean
+   * @param {} - Can be anything
+   * @param {type} -- takes a JS datatype i.e. String, Object, Array
+   **/
+  _utils.matchesType = function matchesType(val, type) {
+    return type.name.toString() === Object.prototype.toString.call(val).match(/[^\[object\s](\w*)/)[0];
+  };
+
 }).call(this);
 
 
